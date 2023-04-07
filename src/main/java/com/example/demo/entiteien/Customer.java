@@ -24,7 +24,7 @@ public class Customer extends Person {
 	private String favoriteBand;
 	
 	@OneToMany(fetch = FetchType.LAZY, orphanRemoval = true, mappedBy = "customer")
-	private List<Ticket> tickets;
+		private List<Ticket> tickets;
 	
 	
 	public GenderType getGender() {

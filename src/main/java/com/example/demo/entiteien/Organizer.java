@@ -10,9 +10,12 @@ import javax.persistence.Id;
 import javax.persistence.MappedSuperclass;
 import javax.persistence.OneToMany;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 public class Organizer extends Person {
 
+	
 	@OneToMany(fetch = FetchType.LAZY, orphanRemoval = true, mappedBy = "organizer")
 	private List<Festival> festivals;
 

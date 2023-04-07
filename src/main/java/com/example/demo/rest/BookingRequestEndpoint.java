@@ -11,59 +11,48 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.demo.entiteien.BookingRequest;
-import com.example.demo.persistance.IBookingRequestRepository;
 import com.example.demo.service.BookingRequestService;
 
 @RestController
 public class BookingRequestEndpoint {
-
+	
 	@Autowired
-	private IBookingRequestRepository repo;
+	BookingRequestService service;
 	
-	@RequestMapping("/api/bookingrequest/all")
-	public List<BookingRequest> findAll(){
-		return repo.findAll();
+	@GetMapping("/api/bookingrequest/all")
+	public List<BookingRequest> getAll() {
+		return service.findAll();
+	}
+	@GetMapping("/api/bookingrequest/newempty")
+	public void saveEmpty() {
+		service.save(new BookingRequest());
 	}
 	
-	@GetMapping("saveemptybookingrequest")
-	public void SaveEmpty() {
-		System.out.println("we zijn in het endpoint");
-		repo.save(new BookingRequest());
-	}
-	
-	
-	@RequestMapping(method=RequestMethod.POST, value="/api/bookingrequest")
-	public boolean create(@RequestBody BookingRequest f) {
-		repo.save(f);
-		return true;
-	}
-	
-	
-	
-	@RequestMapping(method=RequestMethod.PUT, value="/api/bookingrequest/{id}")
-	public boolean update(@RequestBody BookingRequest f, @PathVariable long id) {
-		BookingRequest bookingRequest = repo.findById(id).get();
-		bookingRequest.setDay(f.getDay());
-		bookingRequest.setTimeSlot(f.getTimeSlot());
-		bookingRequest.setHasVj(f.isHasVj());
-		bookingRequest.setNeedVj(f.isNeedVj());
-		bookingRequest.setStatus(f.getStatus());
-		bookingRequest.setSynopsis(f.getSynopsis());
-//		bookingRequest.getArtist().getId();
-//		bookingRequest.getStage().getId(); 
+	@GetMapping("api/bookingrequest/get/{id}")
+	public BookingRequest getById(@PathVariable long id) {
+		return service.findById(id);
 		
-		repo.save(bookingRequest);
+	}
+	 
+	
+	@RequestMapping(method=RequestMethod.POST, value="/api/bookingrequest/new")
+	public boolean create(@RequestBody BookingRequest f) {
+		service.save(f);
 		return true;
 	}
 	
-	//	
-//	@RequestMapping(method = RequestMethod.)	
+
+	@RequestMapping(method=RequestMethod.PUT, value="/api/bookingrequest/update/{id}")
+	public boolean update(@RequestBody BookingRequest f, @PathVariable long id) {
+		service.update(f,id);
+		return true;
+	}
 	
-//	@GetMapping("def")
-//	public void ghi() {
-//		System.out.println("we zijn in het endpoint");
-//		abc.goeienaam();
-//	}
+	@RequestMapping(method=RequestMethod.DELETE, value="/api/bookingrequest/delete/{id}")
+	public boolean delete( @PathVariable long id) {
+		return service.delete(id);
+	}
+	
 	
 	
 }
