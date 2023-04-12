@@ -53,5 +53,15 @@ public abstract class Person {
 	public void setPassword(String password) {
 		this.password = password;
 	}
+	
+	public boolean compareLogin(String email, String password) {
+		
+			if(email.equals(this.email)) {
+				if(password.equals(this.password)) {
+				return true;
+			}
+		}
+			return false;
+	}
 
 }

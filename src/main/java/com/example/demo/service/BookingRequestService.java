@@ -26,7 +26,7 @@ public class BookingRequestService {
 		bookingRequest.setNeedVj(a.isNeedVj());
 		bookingRequest.setStatus(a.getStatus());
 		bookingRequest.setSynopsis(a.getSynopsis());
-//		bookingRequest.getArtist().getId(); Deze moet wel weer aan, of niet, maar dit is commented zodat postman werkt
+		bookingRequest.getArtist().getId(); //Deze moet wel weer aan, of niet, maar dit is commented zodat postman werkt
 //		bookingRequest.getStage().getId(); 
 		
 		repo.save(bookingRequest);
