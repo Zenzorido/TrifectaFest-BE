@@ -56,6 +56,7 @@ public class FestivalService {
 		festival.setBeginDate(a.getBeginDate());
 		festival.setEndDate(a.getEndDate());
 		festival.setName(a.getName());
+		festival.setLocation(a.getLocation());
 //		festival.setOrganizer(a.getOrganizer());
 		festivalRepo.save(festival);
 		return true;

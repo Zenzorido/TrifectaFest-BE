@@ -22,10 +22,11 @@ public class OrganizerService {
 
 	public void createFestival(long id, Festival festival) {
 		// TODO Auto-generated method stub
+		Organizer b = repo.findById(id).get();
+		festival.setOrganizer(b);
 		Festival a = festivalRepo.save(festival);//transient
 		
-		Organizer b = repo.findById(id).get();
-		a.setOrganizer(b);
+		
 		festivalRepo.save(a);
 	}
 	

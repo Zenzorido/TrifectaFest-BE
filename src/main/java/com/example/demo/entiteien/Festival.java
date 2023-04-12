@@ -23,6 +23,8 @@ public class Festival {
 
 	@Column(length = 100)
 	private String name;
+	
+	private String location;
 
 	private LocalDateTime beginDate;
 
@@ -89,12 +91,24 @@ public class Festival {
 		this.stages = stages;
 	}
 
+	@JsonIgnore
 	public Organizer getOrganizer() {
 		return organizer;
+	
 	}
 
+	@JsonIgnore
 	public void setOrganizer(Organizer organizer) {
 		this.organizer = organizer;
 	}
 
+	public String getLocation() {
+		return location;
+	}
+
+	public void setLocation(String location) {
+		this.location = location;
+	}
+
+	
 }
