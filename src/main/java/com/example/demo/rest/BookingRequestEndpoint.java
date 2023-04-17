@@ -59,7 +59,9 @@ public class BookingRequestEndpoint {
 		System.out.println(id);
 		List<BookingRequest> bookings = new ArrayList();
 		BookingRequest abc = new BookingRequest();
+		BookingRequest def = new BookingRequest();
 		bookings.add(abc);
+		bookings.add(def);
 		return bookings;
 	}
 	
