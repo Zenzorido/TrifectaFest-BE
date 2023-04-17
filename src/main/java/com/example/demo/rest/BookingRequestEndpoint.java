@@ -1,5 +1,6 @@
 package com.example.demo.rest;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -53,6 +54,13 @@ public class BookingRequestEndpoint {
 		return service.delete(id);
 	}
 	
-	
+	@GetMapping("api/artist/bookingrequest/{id}")
+	public List<BookingRequest> showBookingRequestByArtist(@PathVariable long id) {
+		System.out.println(id);
+		List<BookingRequest> bookings = new ArrayList();
+		BookingRequest abc = new BookingRequest();
+		bookings.add(abc);
+		return bookings;
+	}
 	
 }
