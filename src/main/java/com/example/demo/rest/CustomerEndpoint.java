@@ -12,45 +12,46 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.example.demo.entiteien.Customer;
 import com.example.demo.persistance.ICustomerRepository;
+import com.example.demo.service.CustomerService;
 
 @RestController
 public class CustomerEndpoint {
 
 	@Autowired
-	private ICustomerRepository repo;
-
-	@GetMapping("/api/customer/saveempty")
-	public void saveEmpty() {
-		System.out.println("we zijn in het endpoint");
-		repo.save(new Customer());
-	}
-
-	@RequestMapping(method = RequestMethod.POST, value = "/api/customer/new")
-	public void create(@RequestBody Customer a) {
-		repo.save(a);
-	}
-
-	@RequestMapping(method = RequestMethod.PUT, value = "/api/customer/{id}")
-	public boolean update(@RequestBody Customer a, @PathVariable long id) {
-		Customer customer = repo.findById(id).get();
-		customer.setGender(a.getGender());
-		customer.setAge(a.getAge());
-		customer.setRegion(a.getRegion());
-		customer.setPhoneNumber(a.getPhoneNumber());
-		customer.setFavoriteBand(a.getFavoriteBand());
-
-		repo.save(customer);
-		return true;
-	}
-
+	private CustomerService service;
+	
 	@GetMapping("/api/customer/all")
 	public List<Customer> getAll() {
-		return repo.findAll();
+		return service.findAll();
 	}
 
 	@GetMapping("customer/{id}")
 	public Customer getById(@PathVariable long id) {
-		return repo.findById(id).get();
+		return service.findById(id);
+	}
+
+	@GetMapping("/api/customer/saveempty")
+	public void saveEmpty() {
+		System.out.println("we zijn in het endpoint");
+		service.save(new Customer());
+	}
+
+	@RequestMapping(method = RequestMethod.POST, value = "/api/customer/new")
+	public void create(@RequestBody Customer a) {
+		service.save(a);
+	}
+
+	@RequestMapping(method = RequestMethod.PUT, value = "/api/customer/{id}")
+	public boolean update(@RequestBody Customer a, @PathVariable long id) {
+		service.update(a, id);
+		return true;
+	}
+
+
+	
+	@RequestMapping(method=RequestMethod.DELETE, value="/api/customer/delete/{id}")
+	public boolean delete( @PathVariable long id) {
+		return service.delete(id);
 	}
 
 }

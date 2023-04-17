@@ -12,6 +12,8 @@ import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 public class Festival {
 
@@ -21,17 +23,22 @@ public class Festival {
 
 	@Column(length = 100)
 	private String name;
+	
+	private String location;
 
 	private LocalDateTime beginDate;
 
 	private LocalDateTime endDate;
-
+	
+	@JsonIgnore
 	@OneToMany(fetch = FetchType.LAZY, orphanRemoval = true, mappedBy = "festival")
 	private List<Ticket> tickets;
 
+	@JsonIgnore
 	@OneToMany(fetch = FetchType.LAZY, orphanRemoval = true, mappedBy = "festival")
 	private List<Stage> stages;
 
+	@JsonIgnore
 	@ManyToOne(optional = true) //Hoort false te zijn
 	private Organizer organizer;
 	
@@ -84,12 +91,24 @@ public class Festival {
 		this.stages = stages;
 	}
 
+	@JsonIgnore
 	public Organizer getOrganizer() {
 		return organizer;
+	
 	}
 
+	@JsonIgnore
 	public void setOrganizer(Organizer organizer) {
 		this.organizer = organizer;
 	}
 
+	public String getLocation() {
+		return location;
+	}
+
+	public void setLocation(String location) {
+		this.location = location;
+	}
+
+	
 }

@@ -17,34 +17,34 @@ import com.example.demo.service.ArtistService;
 public class ArtistEndpoint {
 	@Autowired
 	ArtistService service;
-
-	@GetMapping("api/artist/newempty")
-	public void SaveEmpty() {
-		System.out.println("we zijn in het endpoint");
-		service.save();
-	}
 	
-	@RequestMapping(method=RequestMethod.POST, value="api/artist/new")
-	public boolean saveNew(@RequestBody Artist a) {
-		return service.save(a);
-	}
-	
-	@GetMapping("api/artist/all")
+	@GetMapping("/api/artist/all")
 	public List<Artist> getAll() {
 		return service.findAll();
 	}
 	
-	@GetMapping("api/artist/get/{id}")
+	@GetMapping("/api/artist/get/{id}")
 	public Artist getById(@PathVariable long id) {
 		return service.findById(id);
 	}
 	
-	@RequestMapping(method=RequestMethod.PUT, value="api/artist/update/{id}")
+	@GetMapping("/api/artist/newempty") //<- deze is goed om te proberen
+	public void saveEmpty() {
+		System.out.println("we zijn in het endpoint");
+		service.save();
+	}
+	
+	@RequestMapping(method=RequestMethod.POST, value="/api/artist/new") //<- deze is beter
+	public boolean saveNew(@RequestBody Artist a) {
+		return service.save(a);
+	}
+
+	@RequestMapping(method=RequestMethod.PUT, value="/api/artist/update/{id}")
 	public boolean update(@RequestBody Artist a, @PathVariable long id) {
 		return service.update(a, id);
 	}
 	
-	@RequestMapping(method=RequestMethod.DELETE, value="api/artist/delete/{id}")
+	@RequestMapping(method=RequestMethod.DELETE, value="/api/artist/delete/{id}")
 	public boolean delete( @PathVariable long id) {
 		return service.delete(id);
 	}

@@ -14,60 +14,56 @@ import org.springframework.web.bind.annotation.RestController;
 import com.example.demo.entiteien.Festival;
 import com.example.demo.persistance.IFestivalRepository;
 import com.example.demo.service.FestivalService;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @RestController
 public class FestivalEndpoint {
 	
-	@Autowired
-	IFestivalRepository repo;
+//	@Autowired
+//	IFestivalRepository repo;
 	
 	@Autowired
 	FestivalService service;
 
-	@GetMapping("api/festival/newempty")
-	public void SaveEmpty() {
-		repo.save(new Festival());
+	@GetMapping("/api/festival/newempty")
+	public void saveEmpty() {
+		service.save(new Festival());
 	}
 	
-	@RequestMapping(method=RequestMethod.POST, value="api/festival/new")
+	@RequestMapping(method=RequestMethod.POST, value="/api/festival/new")
 	public boolean saveNew(@RequestBody Festival f) {
-		 repo.save(f);
+		service.save(f);
 		 return true;
 	}
 	
-	@GetMapping("api/festival/all")
+	@GetMapping("/api/festival/all")
 	public List<Festival> getAll() {
-		return repo.findAll();
+		return service.findAll();
 	}
 	
-	@GetMapping("api/festival/get/{id}")
+	@GetMapping("/api/festival/get/{id}")
 	public Festival getById(@PathVariable long id) {
-		return repo.findById(id).get();
+		return service.findById(id);
 		
 	}
 	
-	@RequestMapping(method=RequestMethod.PUT, value="api/festival/update/{id}")
+	@RequestMapping(method=RequestMethod.PUT, value="/api/festival/update/{id}")
 	public boolean update(@RequestBody Festival f, @PathVariable long id) {
-		Festival festival = repo.findById(id).get();
-		festival.setBeginDate(f.getBeginDate());
-		festival.setEndDate(f.getEndDate());
-		festival.setName(f.getName());
-		festival.setOrganizer(f.getOrganizer());
-		repo.save(festival);
+		service.update(f, id);
 		return true;
 	}
 	
-	@RequestMapping(method=RequestMethod.DELETE, value="api/festival/delete/{id}")
+	@RequestMapping(method=RequestMethod.DELETE, value="/api/festival/delete/{id}")
 	public boolean delete( @PathVariable long id) {
-		repo.delete(repo.findById(id).get());
+		service.delete(id);
 		return true;
 	}
 	
-	@GetMapping("api/festival/organizer/{festivalid}/{organizerid}")
+	@GetMapping("/api/festival/organizer/{festivalid}/{organizerid}")
 	public String addOrganizer(@PathVariable("festivalid") long festivalid, @PathVariable("organizerid") long organizerid) {
 		System.out.println(festivalid);
 		System.out.println(organizerid);
-		service.voegtoe(festivalid, organizerid);
+		service.newFestival(festivalid, organizerid);
 		return "";
 	}
 		

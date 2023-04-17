@@ -9,6 +9,8 @@ import javax.persistence.Enumerated;
 import javax.persistence.FetchType;
 import javax.persistence.OneToMany;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 public class Artist extends Person {
 
@@ -24,6 +26,7 @@ public class Artist extends Person {
 	@Column(length = 20)
 	private String rekeningNummer;
 
+	@JsonIgnore
 	@OneToMany(fetch = FetchType.LAZY, orphanRemoval = false, mappedBy = "artist")
 	private List<BookingRequest> bookingRequests;
 

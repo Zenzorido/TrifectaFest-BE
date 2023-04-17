@@ -20,57 +20,47 @@ import com.example.demo.service.OrganizerService;
 
 @RestController
 public class OrganizerEndpoint {
-
-	@Autowired
-	IOrganizerRepository repo;
 	
 	@Autowired
 	OrganizerService service;
 
 	@GetMapping("api/organizer/newempty")
-	public void SaveEmpty() {
-		System.out.println("we zijn in het endpoint");
-		repo.save(new Organizer());
+	public void saveEmpty() {
+		service.save(new Organizer());
 	}
 	
 	@RequestMapping(method=RequestMethod.POST, value="api/organizer/new")
 	public boolean saveNew(@RequestBody Organizer o) {
-		 repo.save(o);
+		service.save(o);
 		 return true;
 	}
 	
 	@GetMapping("api/organizer/all")
 	public List<Organizer> getAll() {
-		return repo.findAll();
+		return service.findAll();
 	}
 	
 	@GetMapping("api/organizer/get/{id}")
 	public Organizer getById(@PathVariable long id) {
-		return repo.findById(id).get();
+		return service.findById(id);
 		
 	}
 	
 	
 	@RequestMapping(method=RequestMethod.PUT, value="api/organizer/update/{id}")
 	public boolean update(@RequestBody Organizer o, @PathVariable long id) {
-		Organizer organizer = repo.findById(id).get();
-		organizer.setEmail(o.getEmail());
-		organizer.setName(o.getName());
-		organizer.setPassword(o.getPassword());
-		repo.save(organizer);
+		service.update(o, id);
 		return true;
 	}
 	
 	@RequestMapping(method=RequestMethod.DELETE, value="api/organizer/delete/{id}")
 	public boolean delete( @PathVariable long id) {
-		repo.delete(repo.findById(id).get());
+		service.delete(id);
 		return true;
 	}
 	
 	@PostMapping("api/organizer/newfestival/{id}")
 	public boolean newFestival(@PathVariable("id") long id, @RequestBody Festival festival) {
-		System.out.println(id);
-		System.out.println(festival);
 		service.createFestival(id, festival);
 		return true;
 	}
