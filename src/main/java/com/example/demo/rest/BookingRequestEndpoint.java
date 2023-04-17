@@ -55,14 +55,8 @@ public class BookingRequestEndpoint {
 	}
 	
 	@GetMapping("api/artist/bookingrequest/{id}")
-	public List<BookingRequest> showBookingRequestByArtist(@PathVariable long id) {
-		System.out.println(id);
-		List<BookingRequest> bookings = new ArrayList();
-		BookingRequest abc = new BookingRequest();
-		BookingRequest def = new BookingRequest();
-		bookings.add(abc);
-		bookings.add(def);
-		return bookings;
+	public List<BookingRequest> showBookingRequestByArtist(@PathVariable long id){
+		return service.filterBookingRequest(id);
 	}
 	
 }
