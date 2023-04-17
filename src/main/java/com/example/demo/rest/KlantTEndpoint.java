@@ -22,7 +22,7 @@ public class KlantTEndpoint {
 	
 	@GetMapping("thomas2/{rrr}")
 	public String eenTweedePoging(@PathVariable("rrr") String abc) {
-		service.opslaanInput(abc);
+		service.opslaanInput(abc); 
 		return "dit is de tweede method!" + abc;
 	}
 	
