@@ -64,6 +64,7 @@ public class FestivalEndpoint {
 		System.out.println(festivalid);
 		System.out.println(organizerid);
 		service.newFestival(festivalid, organizerid);
+		
 		return "";
 	}
 		

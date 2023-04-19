@@ -42,6 +42,12 @@ public class BookingRequestEndpoint {
 		return true;
 	}
 	
+	
+	@RequestMapping(method=RequestMethod.POST, value="/api/bookingrequest/new/{aid}/{sid}" )
+	public boolean create(@RequestBody BookingRequest f, @PathVariable("aid") long aid, @PathVariable("sid") long sid) {
+		service.save(f, aid, sid);
+		return true;
+	}
 
 	@RequestMapping(method=RequestMethod.PUT, value="/api/bookingrequest/update/{id}")
 	public boolean update(@RequestBody BookingRequest f, @PathVariable long id) {

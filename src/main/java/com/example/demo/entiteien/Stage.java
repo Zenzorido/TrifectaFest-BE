@@ -10,6 +10,8 @@ import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
  
 @Entity
 public class Stage {
@@ -26,6 +28,7 @@ public class Stage {
 	@OneToMany(fetch = FetchType.LAZY, orphanRemoval = true, mappedBy = "stage")
 	private List<BookingRequest> bookingRequests;
 
+	@JsonIgnore
 	@ManyToOne(optional = false)
 	private Festival festival;
 

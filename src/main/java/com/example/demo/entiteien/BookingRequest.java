@@ -18,7 +18,7 @@ public class BookingRequest {
 	private long id;
 	
 	@Enumerated(EnumType.STRING)
-	private BookingRequestStatus status;
+	private BookingRequestStatus status = BookingRequestStatus.pending;
 	
 	private int day;
 	 

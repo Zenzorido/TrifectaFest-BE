@@ -11,6 +11,7 @@ import com.example.demo.entiteien.Artist;
 import com.example.demo.entiteien.BookingRequest;
 import com.example.demo.persistance.IArtistRepository;
 import com.example.demo.persistance.IBookingRequestRepository;
+import com.example.demo.persistance.IStageRepository;
 
 
 @Service
@@ -20,7 +21,10 @@ public class BookingRequestService {
 	public IBookingRequestRepository repo;
 	
 	@Autowired
-	public IArtistRepository aRepo;
+	public IArtistRepository artistRepo;
+	
+	@Autowired
+	public IStageRepository stageRepo;
 	
 	public boolean update(BookingRequest a, long id) {
 		BookingRequest bookingRequest = repo.findById(id).get();
@@ -45,6 +49,20 @@ public class BookingRequestService {
 		repo.save(a);
 		return true;
 	}
+	
+	public boolean save(BookingRequest a, long aid, long sid) {
+		//get artist
+		//get stage
+		//a.set artist artist
+		
+		a.setArtist(artistRepo.findById(aid).get());
+		a.setStage(stageRepo.findById(sid).get());
+		
+		
+		repo.save(a);
+		return true;
+	}
+
 
 
 	public BookingRequest findById(long id) {
@@ -61,7 +79,7 @@ public class BookingRequestService {
 		return true;
 	}
 	public List<BookingRequest> filterBookingRequest(long id) {
-		 Artist artist = aRepo.findById(id).get();
+		 Artist artist = artistRepo.findById(id).get();
 				 List<BookingRequest> brs = repo.findByArtist(artist);
 				 return brs;
 	}

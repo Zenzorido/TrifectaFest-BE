@@ -34,7 +34,6 @@ public class Festival {
 	@OneToMany(fetch = FetchType.LAZY, orphanRemoval = true, mappedBy = "festival")
 	private List<Ticket> tickets;
 
-	@JsonIgnore
 	@OneToMany(fetch = FetchType.LAZY, orphanRemoval = true, mappedBy = "festival")
 	private List<Stage> stages;
 

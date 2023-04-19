@@ -49,4 +49,6 @@ public class StageEndpoint {
 	public boolean delete( @PathVariable long id) {
 		return service.delete(id);
 	}
+	
+	
 }
