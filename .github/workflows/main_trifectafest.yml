@@ -3,6 +3,11 @@
 
 name: Build and deploy JAR app to Azure Web App - Trifectafest
 
+env:
+      DB_HOST: ${{secrets.DB_HOST}}
+      DB_USERNAME: ${{secrets.DB_USERNAME}}
+      DB_PASSWORD: ${{secrets.DB_PASSWORD}}
+      
 on:
   push:
     branches:
@@ -20,9 +25,7 @@ jobs:
         uses: actions/setup-java@v1
         with:
           java-version: '17'
-          server-id: ${DB_HOST}
-          server-username: ${DB_USERNAME}
-          server-password: ${DB_PASSWORD}
+         
 
       - name: Build with Maven
         run: mvn clean install
