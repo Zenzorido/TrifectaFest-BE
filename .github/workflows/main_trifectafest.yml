@@ -20,9 +20,9 @@ jobs:
         uses: actions/setup-java@v1
         with:
           java-version: '17'
-          server_id: ${DB_HOST}
-          server_username: ${DB_USERNAME}
-          server_password: ${DB_PASSWORD}
+          server-id: ${DB_HOST}
+          server-username: ${DB_USERNAME}
+          server-password: ${DB_PASSWORD}
 
       - name: Build with Maven
         run: mvn clean install
