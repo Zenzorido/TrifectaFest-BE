@@ -26,8 +26,10 @@ public class Festival {
 	
 	private String location;
 
+	@Column(length = 0)
 	private LocalDateTime beginDate;
 
+	@Column(length = 0)
 	private LocalDateTime endDate;
 	
 	@JsonIgnore
