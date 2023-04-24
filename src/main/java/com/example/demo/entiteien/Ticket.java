@@ -2,6 +2,7 @@ package com.example.demo.entiteien;
 
 import java.time.LocalDateTime;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -14,7 +15,9 @@ public class Ticket {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id;
+	@Column(length = 0)
 	private LocalDateTime startDate;
+	@Column(length = 0)
 	private LocalDateTime endDate;
 	
 	@ManyToOne(optional = false)
@@ -23,6 +26,12 @@ public class Ticket {
 	@ManyToOne(optional = false)
 	private Festival festival;
 	
+	public Festival getFestival() {
+		return festival;
+	}
+	public void setFestival(Festival festival) {
+		this.festival = festival;
+	}
 	public long getId() {
 		return id;
 	}
