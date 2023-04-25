@@ -1,13 +1,11 @@
 package com.example.demo.entiteien;
 
-import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.MappedSuperclass;
 
 @MappedSuperclass
-
 public abstract class Person {
 
 	@Id
@@ -55,15 +53,8 @@ public abstract class Person {
 	}
 	
 	public boolean compareLogin(String email, String password) {
-		
-			if(email.equals(this.email)) {
-				if(password.equals(this.password)) {
-				return true;
-			}
-				String s = 'b'+63+"a";
-				
-		}
-			return false;
+
+		return (email.equals(this.email) && password.equals(this.password));
 	}
 
 }

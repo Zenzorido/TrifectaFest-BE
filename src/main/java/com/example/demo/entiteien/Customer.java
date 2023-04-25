@@ -9,6 +9,8 @@ import javax.persistence.Enumerated;
 import javax.persistence.FetchType;
 import javax.persistence.OneToMany;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 public class Customer extends Person {
 
@@ -16,17 +18,27 @@ public class Customer extends Person {
 	private GenderType gender;
 	
 	private int age;
+	
 	@Column(length = 50)
 	private String region;
 	
 	private int phoneNumber;
+	
 	@Column(length = 50)
 	private String favoriteBand;
-	
+
+	@JsonIgnore
 	@OneToMany(fetch = FetchType.LAZY, orphanRemoval = true, mappedBy = "customer")
-		private List<Ticket> tickets;
+	private List<Ticket> tickets;
 	
-	
+	public List<Ticket> getTickets() {
+		return tickets;
+	}
+
+	public void setTickets(List<Ticket> tickets) {
+		this.tickets = tickets;
+	}
+
 	public GenderType getGender() {
 		return gender;
 	}

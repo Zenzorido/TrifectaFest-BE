@@ -5,12 +5,10 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.example.demo.entiteien.Artist;
 import com.example.demo.entiteien.Festival;
 import com.example.demo.entiteien.Organizer;
 import com.example.demo.persistance.IFestivalRepository;
 import com.example.demo.persistance.IOrganizerRepository;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Service
 public class FestivalService {

@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.demo.entiteien.Customer;
-import com.example.demo.persistance.ICustomerRepository;
 import com.example.demo.service.CustomerService;
 
 @RestController
@@ -47,8 +46,6 @@ public class CustomerEndpoint {
 		return true;
 	}
 
-
-	
 	@RequestMapping(method=RequestMethod.DELETE, value="/api/customer/delete/{id}")
 	public boolean delete( @PathVariable long id) {
 		return service.delete(id);
