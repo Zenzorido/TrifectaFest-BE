@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.demo.entiteien.Ticket;
@@ -57,6 +58,13 @@ public class TicketEndpoint {
 	@RequestMapping(method=RequestMethod.DELETE, value="/api/ticket/delete/{id}")
 	public boolean delete( @PathVariable long id) {
 		return service.delete(id);
+	}
+	
+	@GetMapping("/api/ticket/has/{cid}/{fid}")
+	@ResponseBody
+	public boolean hasTicket(@PathVariable("cid") long cid, @PathVariable("fid") long fid) {
+		return service.hasTicket(cid, fid);
+		
 	}
 	
 }

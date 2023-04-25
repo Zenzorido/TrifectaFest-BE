@@ -68,4 +68,10 @@ public class TicketService {
 		return true;
 	}
 	
+	public boolean hasTicket(long cid, long fid) {
+		System.out.println(cid + fid);
+		return repo.findByCustomerAndFestival(cid, fid) != null;
+		
+	}
+	
 }
