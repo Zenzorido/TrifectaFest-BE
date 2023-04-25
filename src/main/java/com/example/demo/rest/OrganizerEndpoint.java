@@ -11,11 +11,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.example.demo.entiteien.Artist;
 import com.example.demo.entiteien.Festival;
 import com.example.demo.entiteien.Organizer;
-import com.example.demo.persistance.IOrganizerRepository;
-import com.example.demo.service.ArtistService;
 import com.example.demo.service.OrganizerService;
 
 @RestController

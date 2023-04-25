@@ -12,16 +12,12 @@ import com.example.demo.entiteien.Organizer;
 import com.example.demo.entiteien.Person;
 import com.example.demo.persistance.IArtistRepository;
 import com.example.demo.persistance.ICustomerRepository;
-import com.example.demo.persistance.ILoginRepository;
 import com.example.demo.persistance.IOrganizerRepository;
 
 @Service
 
 public class LoginService {
-	
-	@Autowired
-	private ILoginRepository repo;
-	
+		
 	@Autowired
 	IOrganizerRepository organizerRepo;
 	
@@ -39,11 +35,10 @@ public class LoginService {
 		ps.addAll(findAllOrganizer());
 		
 		for (Person person : ps) {
-				if(person.compareLogin(a.getEmail(),a.getPassword())) {
+			if(person.compareLogin(a.getEmail(),a.getPassword())) {
 				return person;
 			}
 		}
-		
 		return null;
 	}
 	
