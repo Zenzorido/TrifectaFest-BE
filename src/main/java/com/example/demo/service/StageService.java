@@ -5,7 +5,9 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.example.demo.entiteien.Festival;
 import com.example.demo.entiteien.Stage;
+import com.example.demo.persistance.IFestivalRepository;
 import com.example.demo.persistance.IStageRepository;
 
 @Service
@@ -13,6 +15,9 @@ public class StageService {
 
 	@Autowired
 	public IStageRepository repo;
+	
+	@Autowired
+	public IFestivalRepository festivalRepo;
 	
 	public void save() {
 		repo.save(new Stage());
@@ -29,6 +34,10 @@ public class StageService {
 	
 	public Stage findById(long id) {
 		return repo.findById(id).get();
+	}
+	
+	public Festival getFestival(long id) {
+		return repo.findById(id).get().getFestival();
 	}
 	
 	public boolean update(Stage a, long id) {

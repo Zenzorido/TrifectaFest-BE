@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.example.demo.entiteien.Festival;
 import com.example.demo.entiteien.Stage;
 import com.example.demo.service.StageService;
 
@@ -27,6 +28,11 @@ public class StageEndpoint {
 	@GetMapping("/api/stage/get/{id}")
 	public Stage getById(@PathVariable long id) {
 		return service.findById(id);
+	}
+	
+	@GetMapping("/api/stage/getfestival/{id}")
+	public Festival getFestivalById(@PathVariable long id) {
+		return service.getFestival(id);
 	}
 	
 	@GetMapping("/api/stage/newempty") //<- deze is goed om te proberen
